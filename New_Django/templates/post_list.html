@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .highlight1 {
+            background-color: yellow; /* Цвет выделения для первой строки */
+        }
+        .highlight2 {
+            background-color: green; /* Цвет выделения для второй строки */
+        }
+    </style>
+</head>
+<body>
+    <h1>Страница с постами</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <h2> {{ post.title }}</h2>
+                <p class="highlight1">{{ post.content }}</p>
+                <p><em>Published on {{ post.created_at }}</em></p>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+        <select name="page_size" id="page_size">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        </select>
+            <label>Показать:</label>
+            {{paginator.count}}
+    <button type="submit" name="action" value="first">Первая</button>
+    <button type="submit" name="action" value="prev">Предыдущая</button>
+    <span class="current">{{ posts.number }}</span> из {{ paginator.num_pages }}
+    <button type="submit" name="action" value="next">Следующая</button>
+    <button type="submit" name="action" value="last">Последняя</button>
+    </div>
+</body>
+</html>
